@@ -5,7 +5,9 @@ import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import Layout from "../layout";
 import { useRouter } from "next/navigation";
-import { routes } from "@/app/routes/routes";
+import { setCookie } from "@/app/utils/cookie.util";
+import { parseJwt } from "@/app/utils/jwt.util";
+import { User } from "@/app/models/users";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -23,8 +25,8 @@ export default function Login() {
         },
       );
       if (data.access_token) {
-        document.cookie = `token=${data.access_token}; path=/`;
-        router.push(routes.home);
+        const user = parseJwt<User>(data.access_token);
+        setCookie('token', data.access_token, user!.exp);
         router.refresh();
       }
     } catch (err) {

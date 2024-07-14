@@ -11,17 +11,17 @@ export default function UserView() {
   useEffect(() => {
     const currentUser = getCurrentUser();
     setUser(currentUser);
-  }, [user]);
+  }, []);
 
   return (
     <Layout>
       <CardBody>
         <Row>
-          <MyLabel label="User Name" value={user?.username } />
+          <MyLabel label="User Name" value={user?.username} />
         </Row>
         <hr />
         <Row>
-          <MyLabel label="Email" value={user?.email } />
+          <MyLabel label="Email" value={user?.email} />
         </Row>
       </CardBody>
     </Layout>
