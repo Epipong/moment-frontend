@@ -1,6 +1,5 @@
 "use client";
 
-import Login from "@/pages/auth/login";
 import { Container, Navbar } from "react-bootstrap";
 
 export default function Home() {
@@ -16,9 +15,7 @@ export default function Home() {
           <Navbar.Brand href="#home">MOMENT</Navbar.Brand>
         </Container>
       </Navbar>
-      <Container className="mt-5">
-        WELCOME
-      </Container>
+      <Container className="mt-5">You are logged!! 🥳</Container>
     </>
   );
 }

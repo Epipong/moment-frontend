@@ -6,7 +6,7 @@ import { Inter } from "next/font/google";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function Layout({
-  children
+  children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
@@ -25,9 +25,7 @@ export default function Layout({
           <Navbar.Brand href="#home">MOMENT</Navbar.Brand>
         </Container>
       </Navbar>
-      <Container className="mt-5">
-        {children}
-      </Container>
+      <Container className="mt-5">{children}</Container>
     </ThemeProvider>
-  )
+  );
 }
