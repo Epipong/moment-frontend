@@ -1,8 +1,19 @@
 "use client";
 
-import { Container, Navbar } from "react-bootstrap";
+import { Button, Container, Navbar } from "react-bootstrap";
+import { deleteCookie } from "./utils/cookie.util";
+import { useRouter } from "next/navigation";
+import { routes } from "./routes/routes";
 
 export default function Home() {
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    deleteCookie("token");
+    router.push(routes.home);
+    router.refresh();
+  };
+
   return (
     <>
       <Navbar
@@ -15,7 +26,13 @@ export default function Home() {
           <Navbar.Brand href="#home">MOMENT</Navbar.Brand>
         </Container>
       </Navbar>
-      <Container className="mt-5">You are logged!! 🥳</Container>
+      <Container className="mt-5">
+        <h1>You are logged!! 🥳</h1>
+        <br />
+        <Button variant="danger" onClick={handleLogout}>
+          🚪Logout
+        </Button>
+      </Container>
     </>
   );
 }

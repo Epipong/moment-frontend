@@ -4,31 +4,28 @@ import axios from "axios";
 import { FormEvent, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import Layout from "../layout";
-import { useRouter } from "next/router";
-import Link from "next/link";
-import { User } from "@/app/api/users";
-import { parseJwt } from "@/app/utils/jwt.util";
+import { useRouter } from "next/navigation";
+import { routes } from "@/app/routes/routes";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
+  const uri = process.env.NEXT_PUBLIC_API_URL;
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const { data } = await axios.post<{ access_token: string }>(
-        "http://localhost:3000/auth/login",
+        `${uri}/auth/login`,
         {
           email,
           password,
         },
       );
-      console.log({ data });
-
       if (data.access_token) {
         document.cookie = `token=${data.access_token}; path=/`;
-        router.push("/");
+        router.push(routes.home);
       }
     } catch (err) {
       console.error(err);

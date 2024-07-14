@@ -1,10 +1,18 @@
-const getCookie = (name: string) => {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) {
-    return parts.pop()!.split(";").shift();
-  }
-  return "";
+"use server";
+
+import { cookies } from "next/headers";
+
+const getCookie = (key: string) => {
+  const cookie = cookies().get(key);
+  return cookie?.value;
 };
 
-export { getCookie };
+const setCookie = (key: string, value: string) => {
+  return cookies().set(key, value);
+};
+
+const deleteCookie = (key: string) => {
+  return cookies().delete(key);
+};
+
+export { getCookie, deleteCookie, setCookie };

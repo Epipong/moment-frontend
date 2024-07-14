@@ -1,10 +1,11 @@
 "use client";
 
 import axios from "axios";
-import { FormEvent, use, useState } from "react";
+import { FormEvent, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import Layout from "../layout";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+import { routes } from "@/app/routes/routes";
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -12,11 +13,12 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const router = useRouter();
+  const uri = process.env.NEXT_PUBLIC_API_URL;
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3000/auth/register", {
+      const response = await axios.post(`${uri}/auth/register`, {
         email,
         username,
         password,
@@ -24,7 +26,7 @@ export default function Register() {
       });
 
       if (response.status === 201) {
-        router.push("auth/login");
+        router.push(routes.login);
       } else {
         //
       }
