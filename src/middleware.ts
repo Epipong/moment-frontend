@@ -4,7 +4,7 @@ import { routes } from "./app/routes/routes";
 export function middleware(request: NextRequest) {
   const token = request.cookies.get("token")?.value;
 
-  if (token && request.nextUrl.pathname != routes.home) {
+  if (token && request.nextUrl.pathname.startsWith("/auth")) {
     return Response.redirect(new URL(routes.home, request.url));
   }
 
@@ -14,5 +14,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/auth/(register|login)"],
+  matcher: ["/((?!api|_next/static|_next/image|.*\\.png$).*)"],
 };

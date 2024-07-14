@@ -1,7 +1,7 @@
 "use client";
 
-import axios from "axios";
-import { FormEvent, useState } from "react";
+import axios, { AxiosError } from "axios";
+import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import Layout from "../layout";
 import { useRouter } from "next/navigation";
@@ -13,8 +13,7 @@ export default function Login() {
   const router = useRouter();
   const uri = process.env.NEXT_PUBLIC_API_URL;
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     try {
       const { data } = await axios.post<{ access_token: string }>(
         `${uri}/auth/login`,
@@ -26,9 +25,13 @@ export default function Login() {
       if (data.access_token) {
         document.cookie = `token=${data.access_token}; path=/`;
         router.push(routes.home);
+        router.refresh();
       }
     } catch (err) {
-      console.error(err);
+      if (err instanceof AxiosError) {
+        const data = err.response?.data;
+        alert(data.message);
+      }
     }
   };
 
@@ -53,7 +56,7 @@ export default function Login() {
           />
         </Form.Group>
         <Button variant="success" type="submit">
-          Login
+          🔑Login
         </Button>
       </Form>
 

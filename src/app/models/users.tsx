@@ -3,6 +3,4 @@ export type User = {
   username: string;
   email: string;
   role: "ADMIN" | "USER";
-  createdAt: Date;
-  updatedAt: Date;
 };

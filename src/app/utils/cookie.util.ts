@@ -1,18 +1,21 @@
-"use server";
+"use client";
 
-import { cookies } from "next/headers";
-
-const getCookie = (key: string) => {
-  const cookie = cookies().get(key);
-  return cookie?.value;
+const getCookie = (name: string) => {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) {
+    return parts.pop()!.split(";").shift();
+  }
+  return undefined;
 };
 
-const setCookie = (key: string, value: string) => {
-  return cookies().set(key, value);
+const setCookie = (name: string, value: string) => {
+  let expires = "";
+  document.cookie = `${name}=${value || ""}${expires}; path=/`;
 };
 
-const deleteCookie = (key: string) => {
-  return cookies().delete(key);
+const deleteCookie = (name: string) => {
+  document.cookie = `${name}=; Max-Age=-99999999; path=/`;
 };
 
 export { getCookie, deleteCookie, setCookie };

@@ -1,6 +1,6 @@
 "use client";
 
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { FormEvent, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import Layout from "../layout";
@@ -18,20 +18,21 @@ export default function Register() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${uri}/auth/register`, {
+      await axios.post(`${uri}/auth/register`, {
         email,
         username,
         password,
         repeatPassword,
       });
 
-      if (response.status === 201) {
-        router.push(routes.login);
-      } else {
-        //
-      }
+      router.push(routes.login);
+      router.refresh();
     } catch (err) {
-      console.error(err);
+      if (err instanceof AxiosError) {
+        const data = err.response?.data;
+        const messages: string[] = data.message;
+        messages.forEach((message) => alert(message));
+      }
     }
   };
 
@@ -79,7 +80,7 @@ export default function Register() {
         </Form.Group>
 
         <Button variant="success" type="submit">
-          Register
+          📝Register
         </Button>
       </Form>
 
