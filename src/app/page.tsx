@@ -1,6 +1,6 @@
 "use client";
 
-import { Register } from "@/pages/register";
+import { Register } from "@/pages/auth/register";
 import { Container, Navbar, ThemeProvider } from "react-bootstrap";
 
 export default function Home() {
