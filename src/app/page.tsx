@@ -1,14 +1,11 @@
 "use client";
 
-import { Register } from "@/pages/auth/register";
-import { Container, Navbar, ThemeProvider } from "react-bootstrap";
+import Login from "@/pages/auth/login";
+import { Container, Navbar } from "react-bootstrap";
 
 export default function Home() {
   return (
-    <ThemeProvider
-      breakpoints={["xxxl", "xxl", "xl", "lg", "md", "sm", "xs", "xxs"]}
-      minBreakpoint="xxs"
-    >
+    <>
       <Navbar
         bg="dark"
         data-bs-theme="dark"
@@ -20,8 +17,8 @@ export default function Home() {
         </Container>
       </Navbar>
       <Container className="mt-5">
-        <Register />
+        WELCOME
       </Container>
-    </ThemeProvider>
+    </>
   );
 }
