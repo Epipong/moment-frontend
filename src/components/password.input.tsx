@@ -6,13 +6,13 @@ export default function PasswordInput({
   placeholder = "Enter your password",
   ariaLabel = "password",
   password,
-  setPassword
+  setPassword,
 }: {
   text?: string;
   placeholder?: string;
   ariaLabel?: string;
   password: Readonly<string>;
-  setPassword: Dispatch<SetStateAction<string>>
+  setPassword: Dispatch<SetStateAction<string>>;
 }) {
   return (
     <Form.Group className="mb-3">
@@ -23,7 +23,8 @@ export default function PasswordInput({
         aria-label={ariaLabel}
         onChange={(e) => setPassword(e.target.value)}
         placeholder={placeholder}
+        required
       />
     </Form.Group>
-  )
+  );
 }

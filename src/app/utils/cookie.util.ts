@@ -3,7 +3,7 @@
 /**
  * Get cookie value by name given.
  * @param name
- * @returns 
+ * @returns
  */
 const getCookie = (name: string) => {
   const value = `; ${document.cookie}`;
@@ -24,7 +24,7 @@ const setCookie = (name: string, value: string, expiresIn?: number) => {
   let expires = "";
   if (expiresIn) {
     const date = new Date();
-    date.setTime(date.getTime() + (expiresIn * 1000));
+    date.setTime(date.getTime() + expiresIn * 1000);
     expires = `; expires=${date.toUTCString()}`;
   }
   document.cookie = `${name}=${value || ""}${expires}; path=/`;

@@ -1,4 +1,4 @@
-const createQueryString = (keysValues: {[key: string]: string}) => {
+const createQueryString = (keysValues: { [key: string]: string }) => {
   const params = new URLSearchParams();
 
   for (const [key, value] of Object.entries(keysValues)) {

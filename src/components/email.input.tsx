@@ -5,12 +5,12 @@ export default function EmailInput({
   text = "✉️Email address",
   placeholder = "Enter your email",
   email,
-  setEmail
+  setEmail,
 }: {
   text?: string;
   placeholder?: string;
-  email: Readonly<string>;
-  setEmail: Dispatch<SetStateAction<string>>
+  email: string | undefined;
+  setEmail: Dispatch<SetStateAction<string | undefined>>;
 }) {
   return (
     <Form.Group className="mb-3">
@@ -22,5 +22,5 @@ export default function EmailInput({
         placeholder={placeholder}
       />
     </Form.Group>
-  )
+  );
 }

@@ -6,13 +6,13 @@ export default function TextInput({
   placeholder = "",
   ariaLabel = "",
   value,
-  setValue
+  setValue,
 }: {
   text?: string;
   placeholder?: string;
   ariaLabel?: string;
-  value: Readonly<string>;
-  setValue: Dispatch<SetStateAction<string>>
+  value: Readonly<string | undefined>;
+  setValue: Dispatch<SetStateAction<string | undefined>>;
 }) {
   return (
     <Form.Group className="mb-3">
@@ -25,5 +25,5 @@ export default function TextInput({
         placeholder={placeholder}
       />
     </Form.Group>
-  )
+  );
 }

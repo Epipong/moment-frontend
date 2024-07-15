@@ -3,7 +3,7 @@ import { User } from "../models/users";
 /**
  * Parse the JWT token to an object.
  * @param token
- * @returns 
+ * @returns
  */
 const parseJwt = <T>(token: string): T | undefined => {
   try {
@@ -16,7 +16,7 @@ const parseJwt = <T>(token: string): T | undefined => {
 /**
  * Return true if the token is expired.
  * @param token
- * @returns 
+ * @returns
  */
 const isTokenExpired = (token: string): boolean => {
   try {

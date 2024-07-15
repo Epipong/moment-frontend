@@ -12,7 +12,7 @@ import EmailInput from "@/components/email.input";
 import PasswordInput from "@/components/password.input";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState<string | undefined>("");
   const [password, setPassword] = useState("");
   const router = useRouter();
   const uri = process.env.NEXT_PUBLIC_API_URL;
@@ -28,7 +28,7 @@ export default function Login() {
       );
       if (data.access_token) {
         const user = parseJwt<User>(data.access_token);
-        setCookie('token', data.access_token, user!.exp);
+        setCookie("token", data.access_token, user!.exp);
         router.refresh();
       }
     } catch (err) {

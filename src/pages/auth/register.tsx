@@ -11,8 +11,8 @@ import PasswordInput from "@/components/password.input";
 import TextInput from "@/components/text.input";
 
 export default function Register() {
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState<string | undefined>("");
+  const [username, setUsername] = useState<string | undefined>("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const router = useRouter();

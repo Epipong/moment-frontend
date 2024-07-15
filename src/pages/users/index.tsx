@@ -19,12 +19,14 @@ export default function UserView() {
   }, []);
 
   const handleClick = async () => {
-    const { username, email } = user!;
+    const { username, email, id } = user!;
     const queryString = createQueryString({
-      username, email
+      username,
+      email,
+      userId: id.toString(),
     });
     router.push(`${routes.users.edit}?${queryString}`);
-  }
+  };
 
   return (
     <Layout>
@@ -38,7 +40,9 @@ export default function UserView() {
         </Row>
       </CardBody>
       <hr />
-      <Button variant="success" onClick={handleClick}>Edit</Button>      
+      <Button variant="success" onClick={handleClick}>
+        Edit
+      </Button>
     </Layout>
   );
 }
