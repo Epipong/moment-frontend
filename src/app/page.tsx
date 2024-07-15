@@ -1,6 +1,6 @@
 "use client";
 
-import Layout from "@/pages/layout";
+import Layout from "@/components/layout";
 import { getCurrentUser, User } from "./models/users";
 import { useEffect, useState } from "react";
 

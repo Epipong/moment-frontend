@@ -3,7 +3,7 @@
 import axios, { AxiosError } from "axios";
 import { FormEvent, useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import Layout from "../layout";
+import Layout from "@/components/layout";
 import { useRouter } from "next/navigation";
 import { routes } from "@/app/routes/routes";
 import EmailInput from "@/components/email.input";
@@ -53,7 +53,7 @@ export default function Register() {
         <br />
         <PasswordInput password={password} setPassword={setPassword} />
         <PasswordInput
-          text="🔑Repeat Password"
+          text="🔑Confirm Password"
           ariaLabel="repeatPassword"
           password={repeatPassword}
           setPassword={setRepeatPassword}

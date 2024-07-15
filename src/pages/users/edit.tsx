@@ -1,5 +1,5 @@
 import { Button, Form } from "react-bootstrap";
-import Layout from "../layout";
+import Layout from "@/components/layout";
 import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, useState } from "react";
 import EmailInput from "@/components/email.input";
@@ -9,7 +9,7 @@ import { routes } from "@/app/routes/routes";
 import axios, { AxiosError } from "axios";
 import { getCurrentUser, User } from "@/app/models/users";
 import { getCookie, setCookie } from "@/app/utils/cookie.util";
-import { parseJwt } from "@/app/utils/jwt.util";
+import { refreshToken } from "@/app/utils/token.util";
 
 export default function UserEdit() {
   const searchParams = useSearchParams();
@@ -30,23 +30,6 @@ export default function UserEdit() {
     }
   };
 
-  const refreshToken = async () => {
-    const { data } = await axios.post<{ access_token: string }>(
-      `${uri}/auth/login`,
-      {
-        email,
-        password,
-      },
-    );
-    if (data.access_token) {
-      const user = parseJwt<User>(data.access_token);
-      setCookie("token", data.access_token, user!.exp);
-      console.log("new token", data.access_token);
-
-      router.refresh();
-    }
-  };
-
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
@@ -54,7 +37,7 @@ export default function UserEdit() {
       const userId = getUserId();
       const token = getCookie("token");
 
-      await axios.patch(
+      const { data } = await axios.patch<User>(
         `${uri}/users/${userId}`,
         {
           username,
@@ -69,7 +52,8 @@ export default function UserEdit() {
         },
       );
 
-      refreshToken();
+      refreshToken(data.email, password);
+      router.refresh();
     } catch (err) {
       if (err instanceof AxiosError) {
         const data = err.response?.data;
@@ -96,7 +80,7 @@ export default function UserEdit() {
         <br />
         <PasswordInput password={password} setPassword={setPassword} />
         <PasswordInput
-          text="🔑Repeat Password"
+          text="🔑Confirm Password"
           ariaLabel="repeatPassword"
           password={repeatPassword}
           setPassword={setRepeatPassword}

@@ -4,7 +4,6 @@ import { isTokenExpired } from "./app/utils/jwt.util";
 
 export function middleware(request: NextRequest) {
   let token = request.cookies.get("token")?.value;
-  console.log(token);
 
   if (token && isTokenExpired(token)) {
     const response = NextResponse.next();

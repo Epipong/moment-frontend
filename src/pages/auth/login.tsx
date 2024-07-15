@@ -3,7 +3,7 @@
 import axios, { AxiosError } from "axios";
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import Layout from "../layout";
+import Layout from "@/components/layout";
 import { useRouter } from "next/navigation";
 import { setCookie } from "@/app/utils/cookie.util";
 import { parseJwt } from "@/app/utils/jwt.util";
