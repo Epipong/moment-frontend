@@ -1,0 +1,10 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: next-moment-frontend
+    environment:
+      PORT: ${PORT}
+    ports:
+      - '8080:8080'
