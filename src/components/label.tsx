@@ -1,4 +1,4 @@
-const MyLabel = ({ label, value }: { label: string; value?: string }) => {
+const Label = ({ label, value }: { label: string; value?: string }) => {
   return (
     <>
       <div className="col-sm-3">
@@ -11,4 +11,4 @@ const MyLabel = ({ label, value }: { label: string; value?: string }) => {
   );
 };
 
-export { MyLabel };
+export { Label };

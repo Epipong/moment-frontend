@@ -8,6 +8,8 @@ import { useRouter } from "next/navigation";
 import { setCookie } from "@/app/utils/cookie.util";
 import { parseJwt } from "@/app/utils/jwt.util";
 import { User } from "@/app/models/users";
+import EmailInput from "@/components/email.input";
+import PasswordInput from "@/components/password.input";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -40,23 +42,9 @@ export default function Login() {
   return (
     <Layout>
       <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3">
-          <Form.Label>✉️Email address</Form.Label>
-          <Form.Control
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email"
-          />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>🔑Password</Form.Label>
-          <Form.Control
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Form.Group>
+        <EmailInput email={email} setEmail={setEmail} />
+        <PasswordInput password={password} setPassword={setPassword} />
+
         <Button variant="success" type="submit">
           🔑Login
         </Button>

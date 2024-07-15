@@ -6,6 +6,9 @@ import { Button, Form } from "react-bootstrap";
 import Layout from "../layout";
 import { useRouter } from "next/navigation";
 import { routes } from "@/app/routes/routes";
+import EmailInput from "@/components/email.input";
+import PasswordInput from "@/components/password.input";
+import TextInput from "@/components/text.input";
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -39,45 +42,22 @@ export default function Register() {
   return (
     <Layout>
       <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3">
-          <Form.Label>✉️Email address</Form.Label>
-          <Form.Control
-            aria-label="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email"
-          />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>👤Username</Form.Label>
-          <Form.Control
-            aria-label="username"
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="Enter your username"
-          />
-        </Form.Group>
+        <EmailInput email={email} setEmail={setEmail} />
+        <TextInput
+          text="👤Username"
+          ariaLabel="username"
+          value={username}
+          setValue={setUsername}
+          placeholder="Enter your username"
+        />
         <br />
-        <Form.Group className="mb-3">
-          <Form.Label>🔑Password</Form.Label>
-          <Form.Control
-            aria-label="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>🔑Repeat Password</Form.Label>
-          <Form.Control
-            aria-label="repeatPassword"
-            type="password"
-            value={repeatPassword}
-            onChange={(e) => setRepeatPassword(e.target.value)}
-          />
-        </Form.Group>
+        <PasswordInput password={password} setPassword={setPassword} />
+        <PasswordInput
+          text="🔑Repeat Password"
+          ariaLabel="repeatPassword"
+          password={repeatPassword}
+          setPassword={setRepeatPassword}
+        />
 
         <Button variant="success" type="submit">
           📝Register

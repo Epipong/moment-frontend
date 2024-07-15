@@ -4,5 +4,6 @@ export const routes = {
   home: "/",
   users: {
     view: "/users",
+    edit: "/users/edit",
   },
 };
