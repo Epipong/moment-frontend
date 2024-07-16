@@ -6,11 +6,13 @@ export default function EmailInput({
   placeholder = "Enter your email",
   email,
   setEmail,
+  required = undefined,
 }: {
   text?: string;
   placeholder?: string;
   email: string | undefined;
   setEmail: Dispatch<SetStateAction<string | undefined>>;
+  required?: boolean | undefined;
 }) {
   return (
     <Form.Group className="mb-3">
@@ -20,6 +22,7 @@ export default function EmailInput({
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder={placeholder}
+        required={required}
       />
     </Form.Group>
   );

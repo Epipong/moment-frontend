@@ -78,12 +78,13 @@ export default function UserEdit() {
           placeholder="Enter your username"
         />
         <br />
-        <PasswordInput password={password} setPassword={setPassword} />
+        <PasswordInput password={password} setPassword={setPassword} required />
         <PasswordInput
           text="🔑Confirm Password"
           ariaLabel="repeatPassword"
           password={repeatPassword}
           setPassword={setRepeatPassword}
+          required
         />
 
         <Button className="me-1" variant="success" type="submit">

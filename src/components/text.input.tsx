@@ -7,12 +7,14 @@ export default function TextInput({
   ariaLabel = "",
   value,
   setValue,
+  required = undefined,
 }: {
   text?: string;
   placeholder?: string;
   ariaLabel?: string;
   value: Readonly<string | undefined>;
   setValue: Dispatch<SetStateAction<string | undefined>>;
+  required?: boolean | undefined;
 }) {
   return (
     <Form.Group className="mb-3">
@@ -23,6 +25,7 @@ export default function TextInput({
         aria-label={ariaLabel}
         onChange={(e) => setValue(e.target.value)}
         placeholder={placeholder}
+        required={required}
       />
     </Form.Group>
   );
